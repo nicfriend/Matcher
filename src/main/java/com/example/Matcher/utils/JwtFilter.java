@@ -20,7 +20,7 @@ public class JwtFilter extends OncePerRequestFilter {
     public String secret = "Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=";
 
     private Claims getUsernameFromToken(String token) {
-        System.out.println(Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody());
+//        System.out.println(Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody());
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
@@ -35,6 +35,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return request.getRequestURI().equals("/authenticate")||request.getRequestURI().contains("h2console");
+        return request.getRequestURI().contains("authenticate")||request.getRequestURI().contains("h2console");
     }
 }

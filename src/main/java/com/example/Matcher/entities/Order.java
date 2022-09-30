@@ -2,12 +2,14 @@ package com.example.Matcher.entities;
 
 import com.example.Matcher.enums.Action;
 
+import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 public class Order {
 
+    @Id
     @NotEmpty
     private String account;
 

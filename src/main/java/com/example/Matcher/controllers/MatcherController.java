@@ -2,7 +2,7 @@ package com.example.Matcher.controllers;
 import com.example.Matcher.*;
 import com.example.Matcher.entities.Order;
 import com.example.Matcher.entities.Trade;
-import com.example.Matcher.entities.Accounts;
+import com.example.Matcher.entities.Account;
 import com.example.Matcher.services.MatcherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,9 +47,5 @@ public class MatcherController {
     public ArrayList<Object> newOrder(@Valid @RequestBody Order order, @RequestParam int agg) {
         return matcher.sendNewOrder(order, agg);
     }
-
-    @PostMapping("/authenticate")
-    public String newAccount(@RequestBody Accounts user){
-        return matcher.sendToken(user);
-    }
 }
+

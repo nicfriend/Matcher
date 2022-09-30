@@ -4,7 +4,7 @@ import com.example.Matcher.Aggregate;
 import com.example.Matcher.Matcher;
 import com.example.Matcher.entities.Order;
 import com.example.Matcher.entities.Trade;
-import com.example.Matcher.entities.Accounts;
+import com.example.Matcher.entities.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +37,5 @@ public class MatcherService {
 
     public ArrayList<Trade> sendTradeData() {
         return matcher.getTradeList();
-    }
-
-    public String sendToken(Accounts user) {
-        return user.generateToken(user.getUsername());
     }
 }
