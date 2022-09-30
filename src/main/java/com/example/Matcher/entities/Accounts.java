@@ -17,7 +17,6 @@ public class Accounts {
 
 
     @Id
-    @Column(name="accountId")
     private int accountId;
 
     private String username;
