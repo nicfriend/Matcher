@@ -4,8 +4,8 @@ import com.example.Matcher.Aggregate;
 import com.example.Matcher.Matcher;
 import com.example.Matcher.entities.Order;
 import com.example.Matcher.entities.Trade;
-import com.example.Matcher.entities.Account;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class MatcherService {
     @Autowired
     private Matcher matcher;
 
-    public ArrayList<Object> sendNewOrder(Order order, int agg) {
+    public ArrayList<Object> sendNewOrder(Order order, int agg, Authentication auth) {
         matcher.trade(order);
         matcher.aggregate(agg);
         ArrayList<Object> returnList = new ArrayList<Object>();

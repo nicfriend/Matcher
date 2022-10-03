@@ -4,12 +4,13 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.TextCodec;
+import lombok.AllArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Table
 @Entity
+@AllArgsConstructor
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,12 +25,6 @@ public class Account {
 
 
     public Account() {
-    }
-
-    public Account(Integer accountId, String username, String password) {
-        this.accountId = accountId;
-        this.username = username;
-        this.password = password;
     }
 
     public Integer getAccountId() {

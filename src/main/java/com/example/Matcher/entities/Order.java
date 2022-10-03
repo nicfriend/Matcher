@@ -13,14 +13,14 @@ public class Order {
     @NotEmpty
     private String account;
 
-    @Positive(message = "price must be greater than 0")
-    private int price;
+    @Positive
+    private final int price;
 
-    @Positive(message = "quantity must be greater than 0")
+    @Positive
     private int quantity;
 
     @NotNull
-    private Action action;
+    private final Action action;
     private int counter;
 
     public Order(String account, int price, int quantity, Action action, int counter) {
@@ -37,6 +37,10 @@ public class Order {
 
     public String getAccount() {
         return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public int getPrice() {

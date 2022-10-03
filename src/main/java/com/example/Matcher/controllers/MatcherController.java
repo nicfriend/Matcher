@@ -37,15 +37,18 @@ public class MatcherController {
     }
 
     @GetMapping("/privateorders")
-    public ArrayList<Order> privateOrder(Authentication authentication) {
-        String account = authentication.getName();
+    public ArrayList<Order> privateOrder(Authentication Authorization) {
+        String account = Authorization.getName();
         return matcher.sendPrivateOrderBook(account);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/neworder")
-    public ArrayList<Object> newOrder(@Valid @RequestBody Order order, @RequestParam int agg) {
-        return matcher.sendNewOrder(order, agg);
+    public ArrayList<Object> newOrder(@Valid @RequestBody Order order, @RequestParam int agg, Authentication Authorization) {
+        if (Authorization.getName().equals(order.getAccount())){
+            return matcher.sendNewOrder(order, agg, Authorization);
+        }
+        return null;
     }
 }
 

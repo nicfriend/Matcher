@@ -20,7 +20,6 @@ public class JwtFilter extends OncePerRequestFilter {
     public String secret = "Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=";
 
     private Claims getUsernameFromToken(String token) {
-//        System.out.println(Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody());
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 

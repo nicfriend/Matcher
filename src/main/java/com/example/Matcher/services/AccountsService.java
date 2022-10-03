@@ -3,14 +3,20 @@ package com.example.Matcher.services;
 import com.example.Matcher.entities.Account;
 import com.example.Matcher.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 public class AccountsService {
     @Autowired
     AccountRepository accountRepository;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(10);
+    }
 
 
     public void saveAccount(Account account) {
@@ -33,8 +39,6 @@ public class AccountsService {
         return null;
     }
 
-
-    public String sendToken(Account user) {
-        return user.generateToken(user.getUsername());
+    public String sendToken(Account user) { return user.generateToken(user.getUsername());
     }
 }
