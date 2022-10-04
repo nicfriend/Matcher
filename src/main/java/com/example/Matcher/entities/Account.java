@@ -47,8 +47,9 @@ public class Account {
         return password;
     }
 
-    public void setPassword(String password) {
+    public String setPassword(String password) {
         this.password = password;
+        return password;
     }
 
     public String generateToken(String username) {

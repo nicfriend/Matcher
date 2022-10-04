@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.function.Function;
 
 public class JwtFilter extends OncePerRequestFilter {
     public String secret = "Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=";
@@ -34,6 +33,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return request.getRequestURI().contains("authenticate")||request.getRequestURI().contains("h2console");
+        return request.getRequestURI().contains("create")||request.getRequestURI().contains("h2console") || request.getRequestURI().contains("login");
     }
 }

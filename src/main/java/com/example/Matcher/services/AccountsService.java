@@ -27,10 +27,17 @@ public class AccountsService {
         return accountRepository.findById(id).get();
     }
 
+    public String validLogin(Account account) {
+        if (accountRepository.findByUsername(account.getUsername()) != null){
+            return sendToken(account);
+        }
+        return "You do not have an account, please create one";
+    }
+
     public void updateAccount(Account newAccount) {
         Account acc = accountRepository.findById(newAccount.getAccountId()).get();
         acc.setUsername(newAccount.getUsername());
-        acc.setPassword(newAccount.getPassword());
+        acc.setPassword(newAccount.setPassword(passwordEncoder().encode(newAccount.getPassword())));
         accountRepository.save(acc);
     }
 
@@ -39,6 +46,6 @@ public class AccountsService {
         return null;
     }
 
-    public String sendToken(Account user) { return user.generateToken(user.getUsername());
-    }
+    public String sendToken(Account user) { return user.generateToken(user.getUsername()); }
+
 }
