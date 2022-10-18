@@ -6,3 +6,4 @@ public enum Action {
         BOUGHT,
         SOLD
 }
+

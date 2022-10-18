@@ -24,15 +24,5 @@ public interface MatcherInterface {
 
     void privateOrderBook(String accountName);
 
-    /**
-     *
-     * @param sellAcc
-     * @param buyAcc
-     * @param quantity
-     * @param price
-     * @param counter
-     *
-     * @return
-     */
     Trade tradeHistory(String sellAcc, String buyAcc, int quantity, int price, int counter);
 }

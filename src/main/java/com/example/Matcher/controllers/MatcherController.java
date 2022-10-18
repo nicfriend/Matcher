@@ -2,7 +2,6 @@ package com.example.Matcher.controllers;
 import com.example.Matcher.*;
 import com.example.Matcher.entities.Order;
 import com.example.Matcher.entities.Trade;
-import com.example.Matcher.entities.Account;
 import com.example.Matcher.services.MatcherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,6 +46,14 @@ public class MatcherController {
     public ArrayList<Object> newOrder(@Valid @RequestBody Order order, @RequestParam int agg, Authentication Authorization) {
         if (Authorization.getName().equals(order.getAccount())){
             return matcher.sendNewOrder(order, agg, Authorization);
+        }
+        return null;
+    }
+
+    @PostMapping("/saveneworder")
+    public Order saveNewOrder(@Valid @RequestBody Order order, Authentication Authorization) {
+        if (Authorization.getName().equals(order.getAccount())){
+            return matcher.saveOrder(order);
         }
         return null;
     }

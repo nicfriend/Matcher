@@ -20,10 +20,10 @@ public class AccountController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @PostMapping("/authenticate")
-    public String authenticate(@RequestBody Account user){
-        return account.sendToken(user);
-    }
+//    @PostMapping("/authenticate")
+//    public String authenticate(@RequestBody Account user){
+//        return account.sendToken(user);
+//    }
 
     @PostMapping("/login")
     public String login(@RequestBody Account user) { return account.validLogin(user); }

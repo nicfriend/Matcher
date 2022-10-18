@@ -1,35 +1,42 @@
 package com.example.Matcher.entities;
 
 import com.example.Matcher.enums.Action;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+@Table(name="orderList")
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
 
-    @Id
     @NotEmpty
+    @Column
     private String account;
 
     @Positive
-    private final int price;
+    @Column
+    private int price;
 
     @Positive
+    @Column
     private int quantity;
 
     @NotNull
-    private final Action action;
-    private int counter;
+    @Column
+    private Action action;
 
-    public Order(String account, int price, int quantity, Action action, int counter) {
-        this.account = account;
-        this.price = price;
-        this.quantity = quantity;
-        this.action = action;
-        this.counter = counter;
-    }
+    @Id
+    @Column
+    private Integer counter;
 
     public String toString(){
         return "[Account: " + this.account + ", Price: " + this.price + ", Quantity: " + this.quantity + ", Action: " + this.action + ", Counter: " + this.counter + "]" + "\n";
@@ -62,6 +69,8 @@ public class Order {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public void setAction(Action action) { this.action = action; }
 
     public void setCounter(int counter) {
         this.counter = counter;

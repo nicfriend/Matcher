@@ -1,6 +1,8 @@
 package com.example.Matcher.services;
 
 import com.example.Matcher.entities.Account;
+import com.example.Matcher.exceptions.AccountIdNotFoundException;
+import com.example.Matcher.exceptions.AccountUsernameNotFoundException;
 import com.example.Matcher.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,24 +26,28 @@ public class AccountsService {
     }
 
     public Account getAccountById(Integer id) {
-        return accountRepository.findById(id).get();
+        return accountRepository.findById(id)
+                .orElseThrow(() -> new AccountIdNotFoundException(id));
     }
 
     public String validLogin(Account account) {
-        if (accountRepository.findByUsername(account.getUsername()) != null){
+        if (accountRepository.existsByUsername(account.getUsername())){
             return sendToken(account);
         }
-        return "You do not have an account, please create one";
+        throw new AccountUsernameNotFoundException(account.getUsername());
     }
 
     public void updateAccount(Account newAccount) {
-        Account acc = accountRepository.findById(newAccount.getAccountId()).get();
+        Account acc = accountRepository.findById(newAccount.getAccountId())
+                .orElseThrow(() -> new AccountIdNotFoundException(newAccount.getAccountId()));
         acc.setUsername(newAccount.getUsername());
         acc.setPassword(newAccount.setPassword(passwordEncoder().encode(newAccount.getPassword())));
         accountRepository.save(acc);
     }
 
     public Account deleteAccount(Integer id){
+        Account acc = accountRepository.findById(id)
+                .orElseThrow(() -> new AccountIdNotFoundException(id));
         accountRepository.deleteById(id);
         return null;
     }
